@@ -6,6 +6,7 @@ class DescriptiveText extends QuizzElement{
     protected $message;
   
     public function __construct($msg=''){
+      parent::__construct(0);
       $this->message = $msg;
     }
   
