@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once 'Quizz.php';
 
 class TextQuizzVisitor implements IQuizzVisitor{
   protected $width;

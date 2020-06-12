@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
-require 'Quizz.php';
+require_once 'Quizz.php';
+require_once 'QuizzElement.php';
 
 $quizz = new Quizz('Mon premier test');
 $e = new DescriptiveText();
