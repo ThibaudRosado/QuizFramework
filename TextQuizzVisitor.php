@@ -34,10 +34,14 @@ class TextQuizzVisitor implements IQuizzVisitor{
   public function renderLittleOpenAsk(LittleOpenAsk $l){
     echo $l->getLabel(),PHP_EOL,
      '__________________________________________________',PHP_EOL,
-     '__________________________________________________';
+     '__________________________________________________',PHP_EOL;
   }
 
   public function renderBigOpenAsk(BigOpenAsk $b){
-
+    echo $b->getLabel(),PHP_EOL,
+     '__________________________________________________',PHP_EOL,
+     '__________________________________________________',PHP_EOL,
+     '__________________________________________________',PHP_EOL,
+     '__________________________________________________',PHP_EOL;
   }
 }

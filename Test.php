@@ -10,6 +10,9 @@ $quizz->addElement($e);
 $little = new LittleOpenAsk("Qui est Yannick ?",3);
 $quizz->addElement($little);
 
+$big = new BigOpenAsk("Décrivez la vie de Yannick : ",3);
+$quizz->addElement($big);
+
 $tv80 = new TextQuizzVisitor();
 $tv60 = new TextQuizzVisitor(60);
 $html = new HTMLQuizzVisitor('result.php');
