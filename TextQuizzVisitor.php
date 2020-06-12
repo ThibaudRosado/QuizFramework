@@ -44,36 +44,25 @@ class TextQuizzVisitor implements IQuizzVisitor{
      '__________________________________________________',PHP_EOL,
      '__________________________________________________',PHP_EOL;
   }
-  public function renderUniqueChoiceAsk(UniqueChoiceAsk $u){
-    echo $u->getLabel(),PHP_EOL,
-    '__________________________________________________',PHP_EOL,
-    '__________________________________________________',PHP_EOL,
-    '__________________________________________________',PHP_EOL,
-    '__________________________________________________',PHP_EOL;
-  }
-
-  public function renderTextQuizzAnswer(\TextQuizzAnswer $s)
-  {
-    echo $s->getLabel(),PHP_EOL,
-    '__________________________________________________',PHP_EOL,
-    '__________________________________________________',PHP_EOL,
-    '__________________________________________________',PHP_EOL,
-    '__________________________________________________',PHP_EOL;
   
-  }
-
+ 
   public function renderMultipleChoiceAsk(MultipleChoiceAsk $m){
-    echo $m->getLabel(),PHP_EOL,
-     '__________________________________________________',PHP_EOL,
-     '__________________________________________________',PHP_EOL;
+    //TODO
+    $answers = $m->getS();
+    echo $m->getLabel(),' (plusieurs choix possibles) : ',PHP_EOL;
+    foreach ($answers as $answer) {
+      echo $answer->getRes() ,PHP_EOL;
+    }
+    echo PHP_EOL;
+    
   }
-  
-  public function renderPictureQuizzAnswer(\PictureQuizzAnswer $sp)
-  {
-    echo $sp->getLabel(),PHP_EOL,
-    '__________________________________________________',PHP_EOL,
-    '__________________________________________________',PHP_EOL,
-    '__________________________________________________',PHP_EOL,
-    '__________________________________________________',PHP_EOL;
+
+  public function renderUniqueChoiceAsk(UniqueChoiceAsk $u){
+    //TODO
+    $answers = $u->getS();
+    echo $u->getLabel(),' (1 seul choix possible) : ',PHP_EOL;
+    foreach ($answers as $answer) {
+      echo $answer->getRes() ,PHP_EOL;
+    }
   }
 }

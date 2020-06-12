@@ -12,6 +12,4 @@ interface IQuizzVisitor{
   public function renderBigOpenAsk(BigOpenAsk $b);
   public function renderUniqueChoiceAsk(UniqueChoiceAsk $u);
   public function renderMultipleChoiceAsk(MultipleChoiceAsk $m);
-  public function renderTextQuizzAnswer(TextQuizzAnswer $s);
-  public function renderPictureQuizzAnswer(PictureQuizzAnswer $sp);
 }
