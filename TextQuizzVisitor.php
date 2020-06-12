@@ -44,4 +44,14 @@ class TextQuizzVisitor implements IQuizzVisitor{
      '__________________________________________________',PHP_EOL,
      '__________________________________________________',PHP_EOL;
   }
+  public function renderUniqueChoiceAsk(UniqueChoiceAsk $u){
+    echo $u->getLabel(),PHP_EOL,
+     '__________________________________________________',PHP_EOL,
+     '__________________________________________________',PHP_EOL;
+  }
+  public function renderMultipleChoiceAsk(MultipleChoiceAsk $m){
+    echo $m->getLabel(),PHP_EOL,
+     '__________________________________________________',PHP_EOL,
+     '__________________________________________________',PHP_EOL;
+  }
 }

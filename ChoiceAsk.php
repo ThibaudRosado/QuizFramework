@@ -1,10 +1,10 @@
 <?php
 
 declare(strict_types=1);
-require_once 'LittleOpenAsk.php';
-require_once 'BigOpenAsk.php';
+require_once 'UniqueChoiceAsk.php';
+require_once 'MultipleChoiceAsk.php';
 
-abstract class OpenAsk extends QuizzElement
+abstract class ChoiceAsk extends QuizzElement
 {
     //todo
 

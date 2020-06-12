@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-class BigOpenAsk extends OpenAsk{
+class UniqueChoiceAsk extends ChoiceAsk{
 
     public function render(IQuizzVisitor $v){
-        $v->renderBigOpenAsk($this);
+        $v->renderUniqueChoiceAsk($this);
     }
 }

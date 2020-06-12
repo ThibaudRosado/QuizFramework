@@ -5,6 +5,9 @@ require_once 'DescriptiveText.php';
 require_once 'OpenAsk.php';
 require_once 'LittleOpenAsk.php';
 require_once 'BigOpenAsk.php';
+require_once 'ChoiceAsk.php';
+require_once 'UniqueChoiceAsk.php';
+require_once 'MultipleChoiceAsk.php';
 
 
 abstract class QuizzElement
