@@ -13,6 +13,12 @@ $quizz->addElement($little);
 $big = new BigOpenAsk("Décrivez la vie de Yannick : ",3);
 $quizz->addElement($big);
 
+$unique = new UniqueChoiceAsk("Questions unique : ",3);
+$quizz->addElement($unique);
+
+$multiple = new MultipleChoiceAsk("Questions multiple : ",3);
+$quizz->addElement($multiple);
+
 $tv80 = new TextQuizzVisitor();
 $tv60 = new TextQuizzVisitor(60);
 $html = new HTMLQuizzVisitor('result.php');

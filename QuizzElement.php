@@ -8,6 +8,9 @@ require_once 'BigOpenAsk.php';
 require_once 'ChoiceAsk.php';
 require_once 'UniqueChoiceAsk.php';
 require_once 'MultipleChoiceAsk.php';
+require_once 'QuizzAnswer.php';
+require_once 'TextQuizzAnswer.php';
+require_once 'PictureQuizzAnswer.php';
 
 
 abstract class QuizzElement
