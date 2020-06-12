@@ -30,4 +30,14 @@ class TextQuizzVisitor implements IQuizzVisitor{
     $left = (int)(($width - $len) / 2);
     return str_repeat(' ', $left) . $text . str_repeat(' ', $width-$left-$len);
   }
+
+  public function renderLittleOpenAsk(LittleOpenAsk $l){
+    echo $l->getLabel(),PHP_EOL,
+     '__________________________________________________',PHP_EOL,
+     '__________________________________________________';
+  }
+
+  public function renderBigOpenAsk(BigOpenAsk $b){
+
+  }
 }

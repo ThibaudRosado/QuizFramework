@@ -7,6 +7,9 @@ $quizz = new Quizz('Mon premier test');
 $e = new DescriptiveText();
 $quizz->addElement($e);
 
+$little = new LittleOpenAsk("Qui est Yannick ?",3);
+$quizz->addElement($little);
+
 $tv80 = new TextQuizzVisitor();
 $tv60 = new TextQuizzVisitor(60);
 $html = new HTMLQuizzVisitor('result.php');

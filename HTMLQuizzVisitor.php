@@ -23,4 +23,14 @@ class HTMLQuizzVisitor implements IQuizzVisitor{
     echo '<p>', $t->getMessage(), '</p>';
   }
 
+  public function renderLittleOpenAsk(LittleOpenAsk $l){
+    echo '';
+  }
+
+  public function renderBigOpenAsk(BigOpenAsk $l){
+
+  }
+
+
+
 }

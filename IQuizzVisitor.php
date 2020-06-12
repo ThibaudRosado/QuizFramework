@@ -8,4 +8,6 @@ require_once 'Quizz.php';
 interface IQuizzVisitor{
   public function renderQuizz(Quizz $q);
   public function renderDescriptiveText(DescriptiveText $t);
+  public function renderLittleOpenAsk(LittleOpenAsk $l);
+  public function renderBigOpenAsk(BigOpenAsk $l);
 }
