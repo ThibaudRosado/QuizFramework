@@ -19,6 +19,10 @@ $quizz->addElement($unique);
 $multiple = new MultipleChoiceAsk("Questions multiple : ",3);
 $quizz->addElement($multiple);
 
+$s = new TextQuizzAnswer("reponse: ",3);
+$quizz->addElement($s);
+
+
 $tv80 = new TextQuizzVisitor();
 $tv60 = new TextQuizzVisitor(60);
 $html = new HTMLQuizzVisitor('result.php');

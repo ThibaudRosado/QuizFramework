@@ -27,8 +27,29 @@ class HTMLQuizzVisitor implements IQuizzVisitor{
     echo 'totolapraline';
   }
 
-  public function renderBigOpenAsk(BigOpenAsk $l){
+  public function renderBigOpenAsk(BigOpenAsk $b){
     echo 'totolapraline';
+  }
+
+  public function renderUniqueChoiceAsk(UniqueChoiceAsk $u)
+  {
+    echo 'unique';
+  }
+
+  public function renderMultipleChoiceAsk(MultipleChoiceAsk $m)
+  {
+    
+    echo 'multiple';
+  }
+
+  public function renderTextQuizzAnswer(\TextQuizzAnswer $s)
+  {
+    echo 'text';
+  
+  }
+  public function renderPictureQuizzAnswer(\PictureQuizzAnswer $sp)
+  {
+    echo 'image';
   }
 
 

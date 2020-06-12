@@ -49,9 +49,22 @@ class TextQuizzVisitor implements IQuizzVisitor{
      '__________________________________________________',PHP_EOL,
      '__________________________________________________',PHP_EOL;
   }
+
+  public function renderTextQuizzAnswer(\TextQuizzAnswer $s)
+  {
+    echo 'réponse';
+    
+  
+  }
+
   public function renderMultipleChoiceAsk(MultipleChoiceAsk $m){
     echo $m->getLabel(),PHP_EOL,
      '__________________________________________________',PHP_EOL,
      '__________________________________________________',PHP_EOL;
+  }
+  
+  public function renderPictureQuizzAnswer(\PictureQuizzAnswer $sp)
+  {
+    echo 'image';
   }
 }
