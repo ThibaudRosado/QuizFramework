@@ -11,7 +11,7 @@ class HTMLQuizzVisitor implements IQuizzVisitor{
 
   public function renderQuizz(Quizz $q){
     echo sprintf('<form action="%s" method="post">', $this->actionUrl),
-      sprintf('<h1>%s</h1>', $q->getTitle());
+      sprintf('<h1>%s</h1>', $q->getTitle()),PHP_EOL;
 
     foreach($q->getElements() as $k => $elt)
       $elt->render($this);
@@ -20,17 +20,28 @@ class HTMLQuizzVisitor implements IQuizzVisitor{
   }
 
   public function renderDescriptiveText(DescriptiveText $t){
-    echo '<p>', $t->getMessage(), '</p>';
+    echo '<p>', $t->getMessage(), '</p>',PHP_EOL;
   }
 
   public function renderLittleOpenAsk(LittleOpenAsk $l){
-    echo 'totolapraline';
+    echo '<label for="">'.$l->getLabel().'</label>',
+    '<input type="text" name="" id="">',PHP_EOL;
   }
 
-  public function renderBigOpenAsk(BigOpenAsk $l){
-    echo 'totolapraline';
+  public function renderBigOpenAsk(BigOpenAsk $g){
+    echo '<label for="">'.$g->getLabel().'</label>',
+    '<input type="textarea" name="" id="">',PHP_EOL;
   }
 
+  public function renderMultipleChoiceAsk(MultipleChoiceAsk $m){
+    //TODO
+    echo "multiple",PHP_EOL;
+  }
+
+  public function renderUniqueChoiceAsk(UniqueChoiceAsk $u){
+    //TODO
+    echo "unique",PHP_EOL;
+  }
 
 
 }

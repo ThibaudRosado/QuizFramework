@@ -5,12 +5,10 @@ require_once 'QuizzElement.php';
 class Quizz{
   protected $title;
   protected $elements;
-  protected $id;
 
   public function __construct(string $title = '', array $elements=array()){
     $this->title = $title;
     $this->elements = $elements;
-    $this->id = 0;
   }
 
   public function getTitle() : string{
@@ -33,8 +31,6 @@ class Quizz{
 
   public function addElement(QuizzElement $e) : Quizz{
     $this->elements[] = $e;
-    $this->id= $this->id +1;
-    //TODO Lier les ID au différant élement dans le tableau.
     return $this;
   }
 
