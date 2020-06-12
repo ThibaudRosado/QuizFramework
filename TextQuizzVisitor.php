@@ -46,22 +46,20 @@ class TextQuizzVisitor implements IQuizzVisitor{
   }
 
   public function renderMultipleChoiceAsk(MultipleChoiceAsk $m){
-    //TODO
     $answers = $m->getQuizzAnswers();
     echo $m->getLabel(),' (plusieurs choix possibles) : ',PHP_EOL;
     foreach ($answers as $answer) {
       echo $answer->getRes() ,PHP_EOL;
     }
     echo PHP_EOL;
-    
   }
 
   public function renderUniqueChoiceAsk(UniqueChoiceAsk $u){
-    //TODO
     $answers = $u->getQuizzAnswers();
     echo $u->getLabel(),' (1 seul choix possible) : ',PHP_EOL;
     foreach ($answers as $answer) {
       echo $answer->getRes() ,PHP_EOL;
     }
+    echo PHP_EOL;
   }
 }

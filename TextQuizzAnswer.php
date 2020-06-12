@@ -1,21 +1,21 @@
 <?php
 require_once 'QuizzAnswer.php';
-class TextQuizzAnswer extends QuizzAnswer{
-
+class TextQuizzAnswer extends QuizzAnswer
+{
     protected $res;
 
-    public function __construct($res=80){
+    public function __construct($res = 80)
+    {
         $this->res = $res;
-      }
+    }
 
     public function getRes()
     {
-    return $this->res;
+        return $this->res;
     }
 
     public function setRes($res)
     {
-    $this->res=$res;
+        $this->res = $res;
     }
-
 }

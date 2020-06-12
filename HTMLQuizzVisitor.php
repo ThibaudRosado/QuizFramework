@@ -10,7 +10,7 @@ class HTMLQuizzVisitor implements IQuizzVisitor{
   }
 
   public function renderQuizz(Quizz $q){
-    echo sprintf('<form action="%s" method="post">', $this->actionUrl),
+    echo sprintf('<form action="%s" method="post">', $this->actionUrl),PHP_EOL,
       sprintf('<h1>%s</h1>', $q->getTitle()),PHP_EOL;
 
     foreach($q->getElements() as $k => $elt)
@@ -20,27 +20,45 @@ class HTMLQuizzVisitor implements IQuizzVisitor{
   }
 
   public function renderDescriptiveText(DescriptiveText $t){
-    echo '<p>', $t->getMessage(), '</p>',PHP_EOL;
+    echo '<p>', $t->getMessage(), '</p>',PHP_EOL,PHP_EOL;
   }
 
   public function renderLittleOpenAsk(LittleOpenAsk $l){
     echo '<label for="">'.$l->getLabel().'</label>',
-    '<input type="text" name="" id="">',PHP_EOL;
+    '<input type="text" name="" id="">',PHP_EOL,PHP_EOL;
   }
 
   public function renderBigOpenAsk(BigOpenAsk $g){
     echo '<label for="">'.$g->getLabel().'</label>',
-    '<input type="textarea" name="" id="">',PHP_EOL;
+    '<input type="textarea" name="" id="">',PHP_EOL,PHP_EOL;
   }
 
   public function renderMultipleChoiceAsk(MultipleChoiceAsk $m){
-    //TODO
-    echo "multiple",PHP_EOL;
+
+    $answers = $m->getQuizzAnswers();
+    echo '<div><p>',$m->getLabel(),' (plusieurs choix possibles) : </p>',PHP_EOL;
+    foreach ($answers as $answer) {
+      echo '<div>',
+      '<input type="checkbox" name="res" value="',$answer->getRes(),'">',
+      '<label for="scales">',$answer->getRes(),'</label>',
+      '</div>',PHP_EOL;
+    }
+    echo '</div>',PHP_EOL,PHP_EOL;
+    
   }
 
   public function renderUniqueChoiceAsk(UniqueChoiceAsk $u){
     //TODO
-    echo "unique",PHP_EOL;
+    $answers = $u->getQuizzAnswers();
+
+    echo '<div><p>',$u->getLabel(),' (1 seul choix possible) : </p>',PHP_EOL;
+    foreach ($answers as $answer) {
+      echo '<div>',
+      '<input type="radio" name="res" value="',$answer->getRes(),'" >',
+      '<label for="huey">',$answer->getRes(),'</label>',
+      '</div>',PHP_EOL;
+    }
+    echo '</div>',PHP_EOL,PHP_EOL;
   }
 
 
