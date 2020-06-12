@@ -20,7 +20,10 @@ $multiple = new MultipleChoiceAsk("Questions multiple : ",3);
 $quizz->addElement($multiple);
 
 $s = new TextQuizzAnswer("reponse: ",3);
-$quizz->addElement($s);
+$s1 = new TextQuizzAnswer("reponse: ",3);
+$multiple->addAnswer($s);
+$multiple->addAnswer($s1);
+$quizz->addElement($multiple);
 
 
 $tv80 = new TextQuizzVisitor();

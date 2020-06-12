@@ -46,14 +46,19 @@ class TextQuizzVisitor implements IQuizzVisitor{
   }
   public function renderUniqueChoiceAsk(UniqueChoiceAsk $u){
     echo $u->getLabel(),PHP_EOL,
-     '__________________________________________________',PHP_EOL,
-     '__________________________________________________',PHP_EOL;
+    '__________________________________________________',PHP_EOL,
+    '__________________________________________________',PHP_EOL,
+    '__________________________________________________',PHP_EOL,
+    '__________________________________________________',PHP_EOL;
   }
 
   public function renderTextQuizzAnswer(\TextQuizzAnswer $s)
   {
-    echo 'réponse';
-    
+    echo $s->getLabel(),PHP_EOL,
+    '__________________________________________________',PHP_EOL,
+    '__________________________________________________',PHP_EOL,
+    '__________________________________________________',PHP_EOL,
+    '__________________________________________________',PHP_EOL;
   
   }
 
@@ -65,6 +70,10 @@ class TextQuizzVisitor implements IQuizzVisitor{
   
   public function renderPictureQuizzAnswer(\PictureQuizzAnswer $sp)
   {
-    echo 'image';
+    echo $sp->getLabel(),PHP_EOL,
+    '__________________________________________________',PHP_EOL,
+    '__________________________________________________',PHP_EOL,
+    '__________________________________________________',PHP_EOL,
+    '__________________________________________________',PHP_EOL;
   }
 }
