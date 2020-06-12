@@ -14,12 +14,12 @@ $quizz->addElement($little);
 $big = new BigOpenAsk("Décrivez la vie de Yannick : ",3);
 $quizz->addElement($big);
 
-$multiple = new MultipleChoiceAsk("Ques ce qui est jaune?");
+$multiple = new MultipleChoiceAsk("Qui est tibo?");
 
-$answer1 = new TextQuizzAnswer("Un canari");
-$answer2 = new TextQuizzAnswer("Le ciel");
-$answer3 = new TextQuizzAnswer("La foret");
-$answer4 = new TextQuizzAnswer("La couleur jaune");
+$answer1 = new TextQuizzAnswer("Un ane");
+$answer2 = new TextQuizzAnswer("Le diable");
+$answer3 = new TextQuizzAnswer("La voie lactée");
+$answer4 = new TextQuizzAnswer("tibo");
 
 $multiple->addAnswer($answer1);
 $multiple->addAnswer($answer2);
@@ -27,7 +27,7 @@ $multiple->addAnswer($answer3);
 $multiple->addAnswer($answer4);
 $quizz->addElement($multiple);
 
-$unique = new UniqueChoiceAsk("Ques ce qui est bleu?");
+$unique = new UniqueChoiceAsk("Qui est manu");
 $unique ->addAnswer($answer1);
 $unique ->addAnswer($answer2);
 $unique ->addAnswer($answer3);
