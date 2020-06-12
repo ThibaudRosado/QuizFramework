@@ -24,11 +24,11 @@ class HTMLQuizzVisitor implements IQuizzVisitor{
   }
 
   public function renderLittleOpenAsk(LittleOpenAsk $l){
-    echo '';
+    echo 'totolapraline';
   }
 
   public function renderBigOpenAsk(BigOpenAsk $l){
-
+    echo 'totolapraline';
   }
 
 

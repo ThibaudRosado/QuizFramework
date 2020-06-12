@@ -10,10 +10,10 @@ abstract class OpenAsk extends QuizzElement
 
     protected $label;
 
-    public function __construct($label = '', $point=1)
+    public function __construct($label = '', $point=1é)
     {
-        $this->label= $label;
         parent::__construct($point);
+        $this->label= $label;        
     }
 
     public function getLabel(){
