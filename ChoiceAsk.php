@@ -11,9 +11,10 @@ abstract class ChoiceAsk extends QuizzElement
     protected $label;
     protected $quizzAnswers;
 
-    public function __construct($label = '', $point = 1)    {
+    public function __construct($label = '', $point = 1,array $quizzAnswers = array()) {
         parent::__construct($point);
         $this->label = $label;
+        $this->quizzAnswers = $quizzAnswers;
     }
 
     public function getLabel()    {

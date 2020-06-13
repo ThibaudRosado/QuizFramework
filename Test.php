@@ -14,7 +14,7 @@ $quizz->addElement($little);
 $big = new BigOpenAsk("Décrivez la vie de Yannick : ",3);
 $quizz->addElement($big);
 
-$multiple = new MultipleChoiceAsk("Ques ce qui est jaune?");
+$multiple = new MultipleChoiceAsk("Ques ce qui est jaune?",5);
 
 $answer1 = new TextQuizzAnswer("Un canari");
 $answer2 = new TextQuizzAnswer("Le ciel");
@@ -27,7 +27,7 @@ $multiple->addQuizzAnswer($answer3);
 $multiple->addQuizzAnswer($answer4);
 $quizz->addElement($multiple);
 
-$unique = new UniqueChoiceAsk("Ques ce qui est bleu?");
+$unique = new UniqueChoiceAsk("Ques ce qui est bleu?",4);
 $unique ->addQuizzAnswer($answer1);
 $unique ->addQuizzAnswer($answer2);
 $unique ->addQuizzAnswer($answer3);
