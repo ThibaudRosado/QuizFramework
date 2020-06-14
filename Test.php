@@ -38,6 +38,19 @@ $tv80 = new TextQuizzVisitor();
 $tv60 = new TextQuizzVisitor(60);
 $html = new HTMLQuizzVisitor('result.php');
 
+$gv = new VerticalGroup();
+$gv->addElement($unique);
+$gv->addElement($multiple);
+$gv->setTitle('Groupe Vertical');
+$quizz->addElement($gv);
+
+$gh = new HorizontalGroup();
+$gh->addElement($unique);
+$gh->addElement($multiple);
+$gh->addElement($unique);
+$gh->setTitle('Groupe Horizontal');
+$quizz->addElement($gh);
+
 $quizz->render($tv80);
 $quizz->render($tv60);
 $quizz->render($html);

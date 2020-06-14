@@ -10,7 +10,8 @@ require_once 'UniqueChoiceAsk.php';
 require_once 'MultipleChoiceAsk.php';
 require_once 'TextQuizzAnswer.php';
 require_once 'QuizzAnswer.php';
-
+require_once 'HorizontalGroup.php';
+require_once 'VerticalGroup.php';
 
 abstract class QuizzElement
 {
