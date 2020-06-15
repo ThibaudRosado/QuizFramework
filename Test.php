@@ -51,12 +51,10 @@ $gh->addElement($unique);
 $gh->setTitle('Groupe Horizontal');
 $quizz->addElement($gh);
 
-// $quizz->render($tv80);
-// $quizz->render($tv60);
+$quizz->render($tv80);
+$quizz->render($tv60);
 $quizz->render($html);
-$quizz->removeElement($gh);
-$quizz->render($html);
-/*
-$quizz->removeElement($e);
-$quizz->removeElementAt(0);
-*/
+// $quizz->removeElement($gh);
+// $quizz->render($html);
+
+

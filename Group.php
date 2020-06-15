@@ -13,12 +13,47 @@ abstract class Group extends QuizzElement
         $this->elements = $elements;
     }
 
-    abstract public function getElements(): array;
-    abstract public function setElements(array $elements);
-    abstract public function addElement(QuizzElement $e);
-    abstract public function removeElement(QuizzElement $e);
-    abstract public function removeElementAt(int $i);
-    abstract public function getTitle();
-    abstract public function setTitle(string $title);
+    public function getElements(): array
+    {
+        return $this->elements;
+    }
+
+    public function setElements(array $elements): Group
+    {
+        $this->elements = $elements;
+        return $this;
+    }
+
+    public function addElement(QuizzElement $e): Group
+    {
+        $this->elements[] = $e;
+        return $this;
+    }
+
+    public function removeElement(QuizzElement $e): Group
+    {
+    $i=0;
+    foreach ($this->elements as $element) {
+        if ( $element === $e){
+        array_splice($this->elements,$i,1);
+        }
+        $i ++;
+    }
+        return $this;
+    }
+
+    public function removeElementAt(int $i): Group
+    {
+        unset($this->elements[$i]);
+        $this->elements = array_values($this->elements);
+        return $this;
+    }
+
+    public function getTitle(){
+        return $this->title;
+    }
+    public function setTitle(string $title){
+        $this->title=$title;
+    }
 
 }

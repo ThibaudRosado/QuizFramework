@@ -47,7 +47,7 @@ class HTMLQuizzVisitor implements IQuizzVisitor
 
   public function renderMultipleChoiceAsk(MultipleChoiceAsk $m)
   {
-
+      //TODO Rendre le name des réponses Unique pour le traitement des réponses
     $answers = $m->getQuizzAnswers();
     echo '<div><p>', $m->getLabel(), ' (plusieurs choix possibles) : </p>', PHP_EOL;
     foreach ($answers as $answer) {
@@ -66,7 +66,7 @@ class HTMLQuizzVisitor implements IQuizzVisitor
 
   public function renderUniqueChoiceAsk(UniqueChoiceAsk $u)
   {
-    //TODO
+    //TODO Rendre le name des réponses Unique pour le traitement des réponses
     $answers = $u->getQuizzAnswers();
 
     echo '<div><p>', $u->getLabel(), ' (1 seul choix possible) : </p>', PHP_EOL;
@@ -88,14 +88,14 @@ class HTMLQuizzVisitor implements IQuizzVisitor
   {
     $width = (int)  (100 / sizeof($h->getElements()));
 
+    echo '<div style="display: flex; flex-direction: row;justify-content: space-around;">', PHP_EOL;
     echo sprintf('<h1>%s</h1>',$h->getTitle()), PHP_EOL;
-    
     foreach ($h->getElements() as $element) {
       echo '<div width="', $width,'%">', PHP_EOL;
       $element->render($this);
-      echo '</div>', PHP_EOL, PHP_EOL;
+      echo '</div>', PHP_EOL;
     }
-    
+    echo '</div>', PHP_EOL, PHP_EOL;
   }
 
   public function renderVerticalGroup(VerticalGroup $v)
