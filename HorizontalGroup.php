@@ -24,7 +24,13 @@ class HorizontalGroup extends Group {
 
     public function removeElement(QuizzElement $e): HorizontalGroup
     {
-        // TODO
+        $i=0;
+        foreach ($this->elements as $element) {
+            if ( $element === $e){
+            array_splice($this->elements,$i,1);
+            }
+            $i ++;
+        }
         return $this;
     }
 

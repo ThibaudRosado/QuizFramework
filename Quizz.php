@@ -35,7 +35,14 @@ class Quizz{
   }
 
   public function removeElement(QuizzElement $e) : Quizz{
-    // TODO
+    $i=0;
+    foreach ($this->elements as $element) {
+      
+      if ( $element === $e){
+        array_splice($this->elements,$i,1);
+      }
+      $i ++;
+    }
     return $this;
   }
 

@@ -40,7 +40,13 @@ abstract class ChoiceAsk extends QuizzElement
     }
 
     public function removeQuizzAnswer(QuizzAnswer $a): ChoiceAsk    {
-        // TODO
+        $i=0;
+    foreach ($this->quizzAnswers as $quizzAnswer) {
+        if ( $quizzAnswer === $a){
+        array_splice($this->quizzAnswers,$i,1);
+        }
+        $i ++;
+    }
         return $this;
     }
 
