@@ -18,9 +18,14 @@ class Quizz{
   { 
     $i=0;
     foreach ($elements as $element) {
-      $element->setPos($i.'');
+      $element->setPos($i);
+      if ( is_a($element , 'Group')){
+        $element->atribuerPos($element->getElements());
+      }
+
       $i++;
     }
+
   }
 
   public function getTitle() : string{
@@ -44,7 +49,7 @@ class Quizz{
 
   public function addElement(QuizzElement $e) : Quizz{
     $this->elements[] = $e;
-    $this->atribuerPos($this->elements);
+    $this->atribuerPos($this->elements);    
     return $this;
   }
 

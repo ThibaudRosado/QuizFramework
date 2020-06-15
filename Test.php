@@ -58,10 +58,11 @@ $uniqueImage->addQuizzAnswer($repImage);
 
 
 $gv = new VerticalGroup();
-$quizz->addElement($gv);
+$gv->setTitle('Groupe Vertical');
+
 $gv->addElement($uniqueImage);
 $gv->addElement($multipleImage);
-$gv->setTitle('Groupe Vertical');
+$quizz->addElement($gv);
 
 $quizz->render($tv80);
 $quizz->render($tv60);

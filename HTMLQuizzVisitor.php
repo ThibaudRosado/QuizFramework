@@ -53,7 +53,6 @@ class HTMLQuizzVisitor implements IQuizzVisitor
     $this->factChoiceAsk($answers, "checkbox", $m->getPos());
     // foreach ($answers as $answer) {
     //   if (is_a($answer, 'TextQuizzAnswer')) {
-
     //     echo '<div>',
     //       '<input type="checkbox" name="res" value="',
     //       $answer->getRes(),

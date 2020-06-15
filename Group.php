@@ -19,6 +19,9 @@ abstract class Group extends QuizzElement
         $i = 0;
         foreach ($elements as $element) {
             $element->setPos( $this->getPos().'.'.$i);
+            if ( is_a($element , 'Group')){
+                $element->atribuerPos($element->getElements());
+            }
             $i++;
         }
     }
