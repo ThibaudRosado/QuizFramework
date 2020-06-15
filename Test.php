@@ -11,7 +11,7 @@ $quizz->addElement($e);
 $little = new LittleOpenAsk("Qui est Yannick ?",3);
 $quizz->addElement($little);
 
-$big = new BigOpenAsk("Décrivez la vie de Yannick : ",3);
+$big = new BigOpenAsk("Décrivez la vie de Yannick : ",4);
 $quizz->addElement($big);
 
 $multiple = new MultipleChoiceAsk("Ques ce qui est jaune?",5);
@@ -38,18 +38,30 @@ $tv80 = new TextQuizzVisitor();
 $tv60 = new TextQuizzVisitor(60);
 $html = new HTMLQuizzVisitor('result.php');
 
-$gv = new VerticalGroup();
-$gv->addElement($unique);
-$gv->addElement($multiple);
-$gv->setTitle('Groupe Vertical');
-$quizz->addElement($gv);
 
-$gh = new HorizontalGroup();
-$gh->addElement($unique);
-$gh->addElement($multiple);
-$gh->addElement($unique);
-$gh->setTitle('Groupe Horizontal');
-$quizz->addElement($gh);
+// $gh = new HorizontalGroup();
+// $gh->addElement($unique);
+// $gh->addElement($multiple);
+// $gh->addElement($unique);
+// $gh->setTitle('Groupe Horizontal');
+// $quizz->addElement($gh);
+
+
+$multipleImage = new MultipleChoiceAsk('Où est l\'orange du marchand');
+$repImage = new PictureQuizzAnswer('Orange','orange.jpg');
+$multipleImage->addQuizzAnswer($repImage);
+
+
+$uniqueImage = new UniqueChoiceAsk('Où est l\'orange du marchand');
+$repImage = new PictureQuizzAnswer('Orange','orange.jpg');
+$uniqueImage->addQuizzAnswer($repImage);
+
+
+$gv = new VerticalGroup();
+$quizz->addElement($gv);
+$gv->addElement($uniqueImage);
+$gv->addElement($multipleImage);
+$gv->setTitle('Groupe Vertical');
 
 $quizz->render($tv80);
 $quizz->render($tv60);

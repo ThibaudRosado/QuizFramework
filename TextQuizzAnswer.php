@@ -4,7 +4,7 @@ class TextQuizzAnswer extends QuizzAnswer
 {
     protected $res;
 
-    public function __construct($res = 80)
+    public function __construct($res = "")
     {
         $this->res = $res;
     }

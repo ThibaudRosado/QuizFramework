@@ -11,6 +11,16 @@ abstract class Group extends QuizzElement
     {
         $this->title = $title;
         $this->elements = $elements;
+        $this->atribuerPos($this->elements);
+    }
+
+    public function atribuerPos($elements)
+    {
+        $i = 0;
+        foreach ($elements as $element) {
+            $element->setPos( $this->getPos().'.'.$i);
+            $i++;
+        }
     }
 
     public function getElements(): array
@@ -21,24 +31,27 @@ abstract class Group extends QuizzElement
     public function setElements(array $elements): Group
     {
         $this->elements = $elements;
+        $this->atribuerPos($this->elements);
         return $this;
     }
 
     public function addElement(QuizzElement $e): Group
     {
         $this->elements[] = $e;
+        $this->atribuerPos($this->elements);
         return $this;
     }
 
     public function removeElement(QuizzElement $e): Group
     {
-    $i=0;
-    foreach ($this->elements as $element) {
-        if ( $element === $e){
-        array_splice($this->elements,$i,1);
+        $i = 0;
+        foreach ($this->elements as $element) {
+            if ($element === $e) {
+                array_splice($this->elements, $i, 1);
+            }
+            $i++;
         }
-        $i ++;
-    }
+        $this->atribuerPos($this->elements);
         return $this;
     }
 
@@ -46,14 +59,17 @@ abstract class Group extends QuizzElement
     {
         unset($this->elements[$i]);
         $this->elements = array_values($this->elements);
+        $this->atribuerPos($this->elements);
         return $this;
     }
 
-    public function getTitle(){
+    public function getTitle()
+    {
         return $this->title;
     }
-    public function setTitle(string $title){
-        $this->title=$title;
-    }
 
+    public function setTitle(string $title)
+    {
+        $this->title = $title;
+    }
 }

@@ -6,9 +6,21 @@ class Quizz{
   protected $title;
   protected $elements;
 
+
   public function __construct(string $title = '', array $elements=array()){
     $this->title = $title;
     $this->elements = $elements;
+    $this->atribuerPos($this->elements);
+    
+  }
+
+  public function atribuerPos($elements)
+  { 
+    $i=0;
+    foreach ($elements as $element) {
+      $element->setPos($i.'');
+      $i++;
+    }
   }
 
   public function getTitle() : string{
@@ -26,11 +38,13 @@ class Quizz{
 
   public function setElements(array $elements) : Quizz{
     $this->elements = $elements;
+    $this->atribuerPos($this->elements);
     return $this;
   }
 
   public function addElement(QuizzElement $e) : Quizz{
     $this->elements[] = $e;
+    $this->atribuerPos($this->elements);
     return $this;
   }
 
@@ -43,12 +57,14 @@ class Quizz{
       }
       $i ++;
     }
+    $this->atribuerPos($this->elements);
     return $this;
   }
 
   public function removeElementAt(int $i) : Quizz{
     unset($this->elements[$i]);
     $this->elements = array_values($this->elements);
+    $this->atribuerPos($this->elements);
     return $this;
   }
 

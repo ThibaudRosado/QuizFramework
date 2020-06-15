@@ -32,7 +32,7 @@ class HTMLQuizzVisitor implements IQuizzVisitor
   public function renderLittleOpenAsk(LittleOpenAsk $l)
   {
     echo '<label for="">' . $l->getLabel() . '</label>',
-      '<input type="text" name="" id="">',
+      '<input type="text" name="res',$l->getPos(),'" id="">',
       PHP_EOL,
       PHP_EOL;
   }
@@ -40,27 +40,47 @@ class HTMLQuizzVisitor implements IQuizzVisitor
   public function renderBigOpenAsk(BigOpenAsk $g)
   {
     echo '<label for="">' . $g->getLabel() . '</label>',
-      '<input type="textarea" name="" id="">',
+      '<input type="textarea" name="res',$g->getPos(),'" id="">',
       PHP_EOL,
       PHP_EOL;
   }
 
   public function renderMultipleChoiceAsk(MultipleChoiceAsk $m)
   {
-      //TODO Rendre le name des réponses Unique pour le traitement des réponses
+    //TODO Rendre le name des réponses Unique pour le traitement des réponses
     $answers = $m->getQuizzAnswers();
     echo '<div><p>', $m->getLabel(), ' (plusieurs choix possibles) : </p>', PHP_EOL;
-    foreach ($answers as $answer) {
-      echo '<div>',
-        '<input type="checkbox" name="res" value="',
-        $answer->getRes(),
-        '">',
-        '<label for="scales">',
-        $answer->getRes(),
-        '</label>',
-        '</div>',
-        PHP_EOL;
-    }
+    $this->factChoiceAsk($answers, "checkbox", $m->getPos());
+    // foreach ($answers as $answer) {
+    //   if (is_a($answer, 'TextQuizzAnswer')) {
+
+    //     echo '<div>',
+    //       '<input type="checkbox" name="res" value="',
+    //       $answer->getRes(),
+    //       '">',
+    //       '<label for="scales">',
+    //       $answer->getRes(),
+    //       '</label>',
+    //       '</div>',
+    //       PHP_EOL;
+    //   } else {
+    //     echo '<div>',
+    //       '<input type="checkbox" name="res" value="',
+    //       $answer->getRes(),
+    //       '">',
+    //       '<label for="scales">',
+    //       '<img src="',
+    //       $answer->getLien(),
+    //       '"',
+    //       'alt="',
+    //       $answer->getRes(),
+    //       '">',
+    //       '</label>',
+    //       '</div>',
+    //       PHP_EOL;
+    //   }
+    // }
+
     echo '</div>', PHP_EOL, PHP_EOL;
   }
 
@@ -70,28 +90,85 @@ class HTMLQuizzVisitor implements IQuizzVisitor
     $answers = $u->getQuizzAnswers();
 
     echo '<div><p>', $u->getLabel(), ' (1 seul choix possible) : </p>', PHP_EOL;
-    foreach ($answers as $answer) {
-      echo '<div>',
-        '<input type="radio" name="res" value="',
-        $answer->getRes(),
-        '" >',
-        '<label for="huey">',
-        $answer->getRes(),
-        '</label>',
-        '</div>',
-        PHP_EOL;
-    }
+    $this->factChoiceAsk($answers, $type = "radio", $u->getPos());
+    // foreach ($answers as $answer) {
+    //   if (is_a($answer, 'TextQuizzAnswer')) {
+
+    //     echo '<div>',
+    //       '<input type="radio" name="res" value="',
+    //       $answer->getRes(),
+    //       '">',
+    //       '<label for="scales">',
+    //       $answer->getRes(),
+    //       '</label>',
+    //       '</div>',
+    //       PHP_EOL;
+    //   } else {
+    //     echo '<div>',
+    //       '<input type="radio" name="res" value="',
+    //       $answer->getRes(),
+    //       '">',
+    //       '<label for="scales">',
+    //       '<img src="',
+    //       $answer->getLien(),
+    //       '"',
+    //       'alt="',
+    //       $answer->getRes(),
+    //       '">',
+    //       '</label>',
+    //       '</div>',
+    //       PHP_EOL;
+    //   }
+    // }
     echo '</div>', PHP_EOL, PHP_EOL;
+  }
+
+  private function factChoiceAsk($answers, $type, $pos)
+  {
+
+    foreach ($answers as $answer) {
+      if (is_a($answer, 'TextQuizzAnswer')) {
+
+        echo '<div>',
+          '<input type="',
+          $type,
+          '" name="res',$pos,'" value="',
+          $answer->getRes(),
+          '">',
+          '<label for="scales">',
+          $answer->getRes(),
+          '</label>',
+          '</div>',
+          PHP_EOL;
+      } else {
+        echo '<div>',
+          '<input type="',
+          $type,
+          '" name="res',$pos,'" value="',
+          $answer->getRes(),
+          '">',
+          '<label for="scales">',
+          '<img src="',
+          $answer->getLien(),
+          '"',
+          'alt="',
+          $answer->getRes(),
+          '">',
+          '</label>',
+          '</div>',
+          PHP_EOL;
+      }
+    }
   }
 
   public function renderHorizontalGroup(HorizontalGroup $h)
   {
     $width = (int)  (100 / sizeof($h->getElements()));
-
+    echo sprintf('<h1>%s</h1>', $h->getTitle()), PHP_EOL;
     echo '<div style="display: flex; flex-direction: row;justify-content: space-around;">', PHP_EOL;
-    echo sprintf('<h1>%s</h1>',$h->getTitle()), PHP_EOL;
+
     foreach ($h->getElements() as $element) {
-      echo '<div width="', $width,'%">', PHP_EOL;
+      echo '<div width="', $width, '%">', PHP_EOL;
       $element->render($this);
       echo '</div>', PHP_EOL;
     }
@@ -100,11 +177,9 @@ class HTMLQuizzVisitor implements IQuizzVisitor
 
   public function renderVerticalGroup(VerticalGroup $v)
   {
-    echo sprintf('<h1>%s</h1>',$v->getTitle()), PHP_EOL;
+    echo sprintf('<h1>%s</h1>', $v->getTitle()), PHP_EOL;
     foreach ($v->getElements() as $element) {
       $element->render($this);
     }
   }
-
-  
 }
