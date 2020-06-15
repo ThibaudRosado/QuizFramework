@@ -5,12 +5,22 @@ require_once 'QuizzElement.php';
 class Quizz{
   protected $title;
   protected $elements;
-  protected $id;
+
 
   public function __construct(string $title = '', array $elements=array()){
     $this->title = $title;
     $this->elements = $elements;
-    $this->id = 0;
+    $this->atribuerPos($this->elements);
+    
+  }
+
+  public function atribuerPos($elements)
+  { 
+    $i=0;
+    foreach ($elements as $element) {
+      $element->setPos($i.'');
+      $i++;
+    }
   }
 
   public function getTitle() : string{
@@ -28,24 +38,33 @@ class Quizz{
 
   public function setElements(array $elements) : Quizz{
     $this->elements = $elements;
+    $this->atribuerPos($this->elements);
     return $this;
   }
 
   public function addElement(QuizzElement $e) : Quizz{
     $this->elements[] = $e;
-    $this->id= $this->id +1;
-    //TODO Lier les ID au différant élement dans le tableau.
+    $this->atribuerPos($this->elements);
     return $this;
   }
 
   public function removeElement(QuizzElement $e) : Quizz{
-    // TODO
+    $i=0;
+    foreach ($this->elements as $element) {
+      
+      if ( $element === $e){
+        array_splice($this->elements,$i,1);
+      }
+      $i ++;
+    }
+    $this->atribuerPos($this->elements);
     return $this;
   }
 
   public function removeElementAt(int $i) : Quizz{
     unset($this->elements[$i]);
     $this->elements = array_values($this->elements);
+    $this->atribuerPos($this->elements);
     return $this;
   }
 
