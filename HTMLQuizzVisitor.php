@@ -26,21 +26,21 @@ class HTMLQuizzVisitor implements IQuizzVisitor
 
   public function renderDescriptiveText(DescriptiveText $t)
   {
-    echo '<p>', $t->getMessage(), '</p>', PHP_EOL, PHP_EOL;
+    echo '<div><p>', $t->getMessage(), '</p></div>', PHP_EOL, PHP_EOL;
   }
 
   public function renderLittleOpenAsk(LittleOpenAsk $l)
   {
-    echo '<label for="">' . $l->getLabel() . '</label>',
-      '<input type="text" name="res',$l->getPos(),'" id="">',
+    echo '<div><label for="res',$l->getPos(),'">' . $l->getLabel() . '</label>',
+      '<input type="text" name="res',$l->getPos(),'" id=""></div>',
       PHP_EOL,
       PHP_EOL;
   }
 
   public function renderBigOpenAsk(BigOpenAsk $g)
   {
-    echo '<label for="">' . $g->getLabel() . '</label>',
-      '<input type="textarea" name="res',$g->getPos(),'" id="">',
+    echo '<div><label for="res',$g->getPos(),'">' . $g->getLabel() . '</label>',
+      '<textarea name="res',$g->getPos(),'" rows="5" cols="33"></textarea></div>',
       PHP_EOL,
       PHP_EOL;
   }
@@ -134,7 +134,7 @@ class HTMLQuizzVisitor implements IQuizzVisitor
           '" name="res',$pos,'" value="',
           $answer->getRes(),
           '">',
-          '<label for="scales">',
+          '<label for="res',$pos,'">',
           $answer->getRes(),
           '</label>',
           '</div>',
@@ -146,7 +146,7 @@ class HTMLQuizzVisitor implements IQuizzVisitor
           '" name="res',$pos,'" value="',
           $answer->getRes(),
           '">',
-          '<label for="scales">',
+          '<label for="res',$pos,'">',
           '<img src="',
           $answer->getLien(),
           '"',

@@ -11,46 +11,53 @@ abstract class ChoiceAsk extends QuizzElement
     protected $label;
     protected $quizzAnswers;
 
-    public function __construct($label = '', $point = 1,array $quizzAnswers = array()) {
+    public function __construct($label = '', $point = 1, array $quizzAnswers = array())
+    {
         parent::__construct($point);
         $this->label = $label;
         $this->quizzAnswers = $quizzAnswers;
     }
 
-    public function getLabel()    {
+    public function getLabel()
+    {
         return $this->label;
     }
 
-    public function setLabel($label)    {
+    public function setLabel($label)
+    {
         $this->label = $label;
     }
 
-    public function getQuizzAnswers(): array    {
+    public function getQuizzAnswers(): array
+    {
         return $this->quizzAnswers;
     }
 
-    public function setQuizzAnswers(array $quizzAnswers): ChoiceAsk    {
+    public function setQuizzAnswers(array $quizzAnswers): ChoiceAsk
+    {
         $this->quizzAnswers = $quizzAnswers;
         return $this;
     }
 
-    public function addQuizzAnswer(QuizzAnswer $a): ChoiceAsk    {
+    public function addQuizzAnswer(QuizzAnswer $a): ChoiceAsk
+    {
         $this->quizzAnswers[] = $a;
         return $this;
     }
 
-    public function removeQuizzAnswer(QuizzAnswer $a): ChoiceAsk    {
-        $i=0;
-    foreach ($this->quizzAnswers as $quizzAnswer) {
-        if ( $quizzAnswer === $a){
-        array_splice($this->quizzAnswers,$i,1);
+    public function removeQuizzAnswer(QuizzAnswer $a): ChoiceAsk{
+        $i = 0;
+        foreach ($this->quizzAnswers as $quizzAnswer) {
+            if ($quizzAnswer === $a) {
+                array_splice($this->quizzAnswers, $i, 1);
+            }
+            $i++;
         }
-        $i ++;
-    }
         return $this;
     }
 
-    public function removeQuizzAnswerAt(int $i): ChoiceAsk    {
+    public function removeQuizzAnswerAt(int $i): ChoiceAsk
+    {
         unset($this->quizzAnswers[$i]);
         $this->quizzAnswers = array_values($this->quizzAnswers);
         return $this;
