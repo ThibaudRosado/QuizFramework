@@ -69,7 +69,7 @@ class TextQuizzVisitor implements IQuizzVisitor
     $answers = $m->getQuizzAnswers();
     echo $m->getLabel(), ' (plusieurs choix possibles) : ', PHP_EOL;
     foreach ($answers as $answer) {
-      echo ' ▢ ', $answer->getRes(), PHP_EOL;
+      $answer->render($this, $m->getPos());
     }
     echo PHP_EOL;
   }
@@ -79,10 +79,20 @@ class TextQuizzVisitor implements IQuizzVisitor
     $answers = $u->getQuizzAnswers();
     echo $u->getLabel(), ' (1 seul choix possible) : ', PHP_EOL;
     foreach ($answers as $answer) {
-      echo ' ⭘ ', $answer->getRes(), PHP_EOL;
+      $answer->render($this, $u->getPos());
     }
     echo PHP_EOL;
   }
+
+  public function renderTextQuizzAnswer(TextQuizzAnswer $t)
+    {
+      echo ($t->getIsUnique() ? ' ⭘ ' : ' ▢ '), $t->getRes(), PHP_EOL;
+    }
+
+    public function renderPictureQuizzAnswer(PictureQuizzAnswer $p)
+    {
+      echo ($p->getIsUnique() ? ' ⭘ ' : ' ▢ '), $p->getRes(), PHP_EOL;
+    }
 
   public function renderHorizontalGroup(HorizontalGroup $h)
   {
