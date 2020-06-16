@@ -4,7 +4,18 @@ require_once 'Quizz.php';
 
 abstract class Group extends QuizzElement
 {
+    /**
+     * Titre du groupe
+     *
+     * @var string
+     */
     protected $title;
+
+    /**
+     * Array contenant des objet QuizzElement
+     *
+     * @var array
+     */
     protected $elements;
 
     public function __construct(string $title = '', array $elements = array())

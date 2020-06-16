@@ -1,8 +1,19 @@
 <?php
 require_once 'QuizzAnswer.php';
 class PictureQuizzAnswer extends QuizzAnswer
-{
+{   
+    /**
+     *  Text contenant la réponse
+     *
+     * @var string
+     */
     protected $res;
+
+    /**
+     *  lien memant à l'image réponse
+     *
+     * @var string
+     */
     protected $lien;
 
     public function __construct($res = '', $lien = '')

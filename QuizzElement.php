@@ -15,10 +15,18 @@ require_once 'VerticalGroup.php';
 
 abstract class QuizzElement
 {
-  // TODO
-
-  // protected $id; ici ou dans Quizz ??
+  /**
+   * Valeur de la question
+   *
+   * @var int
+   */
   protected $point;
+
+  /**
+   * Identifiant de l'element
+   *
+   * @var string
+   */
   protected $pos;
 
   public function __construct($point = 1)

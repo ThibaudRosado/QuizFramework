@@ -5,7 +5,18 @@ require_once 'QuizzElement.php';
 
 class Quizz
 {
+  /**
+   * Titre du quizz
+   * 
+   * @var string
+   */
   protected $title;
+
+  /**
+   * Array contenant des objets QuizzElement
+   *
+   * @var array
+   */
   protected $elements;
 
 

@@ -5,13 +5,29 @@ require_once 'Quizz.php';
 
 class HTMLQuizzVisitor implements IQuizzVisitor
 {
+    /**
+     * lien où envoyer les réponses du formulaire en méthode POST
+     *
+     * @var String
+     */
     protected $actionUrl;
 
+    /**
+     * Construit le HTMLQuizzVisitor
+     * 
+     * @param string $au
+     */
     public function __construct($au = '')
     {
         $this->actionUrl = $au;
     }
 
+    /**
+     * Gère l'affichage HTML du Quizz
+     *
+     * @param Quizz $q
+     * @return void
+     */
     public function renderQuizz(Quizz $q)
     {
         echo sprintf('<form action="%s" method="post">', $this->actionUrl), PHP_EOL,
@@ -24,11 +40,23 @@ class HTMLQuizzVisitor implements IQuizzVisitor
         echo '</form>';
     }
 
+    /**
+     * Gère l'affichage HTML de description
+     *
+     * @param DescriptiveText $t
+     * @return void
+     */
     public function renderDescriptiveText(DescriptiveText $t)
     {
         echo '<div><p>', $t->getMessage(), '</p></div>', PHP_EOL, PHP_EOL;
     }
 
+    /**
+     * Gère l'affichage HTML de petite question ouverte
+     *
+     * @param LittleOpenAsk $l
+     * @return void
+     */
     public function renderLittleOpenAsk(LittleOpenAsk $l)
     {
         echo '<div><label for="res', $l->getPos(), '">' . $l->getLabel() . '</label>',
@@ -39,6 +67,12 @@ class HTMLQuizzVisitor implements IQuizzVisitor
             PHP_EOL;
     }
 
+    /**
+     * Gère l'affichage HTML de grande question ouverte
+     *
+     * @param BigOpenAsk $g
+     * @return void
+     */
     public function renderBigOpenAsk(BigOpenAsk $g)
     {
         echo '<div><label for="res', $g->getPos(), '">' . $g->getLabel() . '</label>',
@@ -49,6 +83,12 @@ class HTMLQuizzVisitor implements IQuizzVisitor
             PHP_EOL;
     }
 
+    /**
+     * Gère l'affichage HTML de question fermé à choix multiple
+     *
+     * @param MultipleChoiceAsk $m
+     * @return void
+     */
     public function renderMultipleChoiceAsk(MultipleChoiceAsk $m)
     {
         //TODO Rendre le name des réponses Unique pour le traitement des réponses
@@ -62,6 +102,12 @@ class HTMLQuizzVisitor implements IQuizzVisitor
         echo '</div>', PHP_EOL, PHP_EOL;
     }
 
+    /**
+     * Gère l'affichage HTML de question fermé à choix unique
+     *
+     * @param UniqueChoiceAsk $u
+     * @return void
+     */
     public function renderUniqueChoiceAsk(UniqueChoiceAsk $u)
     {
         //TODO Rendre le name des réponses Unique pour le traitement des réponses
@@ -76,7 +122,13 @@ class HTMLQuizzVisitor implements IQuizzVisitor
         echo '</div>', PHP_EOL, PHP_EOL;
     }
 
-
+    /**
+     * Gère l'affichage HTML de réponse littéraire
+     *
+     * @param TextQuizzAnswer $t
+     * @param [type] $pos
+     * @return void
+     */
     public function renderTextQuizzAnswer(TextQuizzAnswer $t, $pos)
     {
         echo '<div> <input type="', ($t->getIsUnique() ? 'radio' : 'checkbox'), '" name="res', $pos, '" value="', $t->getRes(), '">',
@@ -89,6 +141,13 @@ class HTMLQuizzVisitor implements IQuizzVisitor
             PHP_EOL;
     }
 
+    /**
+     * Gère l'affichage HTML de réponse en image
+     *
+     * @param PictureQuizzAnswer $p
+     * @param [type] $pos
+     * @return void
+     */
     public function renderPictureQuizzAnswer(PictureQuizzAnswer $p, $pos)
     {
         echo '<div>',
@@ -113,6 +172,12 @@ class HTMLQuizzVisitor implements IQuizzVisitor
             PHP_EOL;
     }
 
+    /**
+     * Gère l'affichage HTML d'un groupe horizontalement
+     *
+     * @param HorizontalGroup $h
+     * @return void
+     */
     public function renderHorizontalGroup(HorizontalGroup $h)
     {
         $width = (int)  (100 / sizeof($h->getElements()));
@@ -127,6 +192,12 @@ class HTMLQuizzVisitor implements IQuizzVisitor
         echo '</div>', PHP_EOL, PHP_EOL;
     }
 
+    /**
+     * Gère l'affichage HTML d'un groupe verticalement
+     *
+     * @param VerticalGroup $v
+     * @return void
+     */
     public function renderVerticalGroup(VerticalGroup $v)
     {
         echo sprintf('<h1>%s</h1>', $v->getTitle()), PHP_EOL;

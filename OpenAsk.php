@@ -6,8 +6,11 @@ require_once 'BigOpenAsk.php';
 
 abstract class OpenAsk extends QuizzElement
 {
-    //TODO
-
+    /**
+     *  Text contenant la question
+     *
+     * @var string
+     */
     protected $label;
 
     public function __construct($label = '', $point = 1)

@@ -111,3 +111,9 @@ if (is_writable($filename)) {
 } else {
     echo "Le fichier $filename n'est pas accessible en écriture.";
 }
+
+
+/*
+*Pour actualiser la doc utiliser la commande : 
+* php phpDocumentor.phar -d . -t docs/api
+*/

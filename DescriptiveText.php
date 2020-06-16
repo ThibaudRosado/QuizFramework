@@ -5,6 +5,11 @@ require_once 'IQuizzVisitor.php';
 
 class DescriptiveText extends QuizzElement
 {
+  /**
+   * Description
+   *
+   * @var string
+   */
   protected $message;
 
   public function __construct($msg = '')
@@ -24,6 +29,12 @@ class DescriptiveText extends QuizzElement
     return $this;
   }
 
+  /**
+   * Affecte l'affichage au visitor.
+   *
+   * @param IQuizzVisitor $v
+   * @return void
+   */
   public function render(IQuizzVisitor $v)
   {
     $v->renderDescriptiveText($this);

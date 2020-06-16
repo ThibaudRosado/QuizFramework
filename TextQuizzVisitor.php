@@ -5,13 +5,29 @@ require_once 'Quizz.php';
 
 class TextQuizzVisitor implements IQuizzVisitor
 {
+  /**
+   * Détermine la largeur du document en nombre de caractère
+   *
+   * @var int
+   */
   protected $width;
 
+  /**
+   * Construit le TextQuizzVisitor
+   *
+   * @param integer $w
+   */
   public function __construct($w = 80)
   {
     $this->width = $w;
   }
 
+  /**
+   * Gère l'affichage Text du Quizz
+   *
+   * @param Quizz $q
+   * @return void
+   */
   public function renderQuizz(Quizz $q)
   {
     echo str_repeat('=', $this->width), PHP_EOL,
@@ -26,11 +42,24 @@ class TextQuizzVisitor implements IQuizzVisitor
     echo PHP_EOL;
   }
 
+  /**
+   * Gère l'affichage Text de description
+   *
+   * @param DescriptiveText $t
+   * @return void
+   */
   public function renderDescriptiveText(DescriptiveText $t)
   {
     echo $t->getMessage(), PHP_EOL, PHP_EOL;
   }
 
+  /**
+   * Permet de centrer un text en fonction de la largeur du fichier
+   *
+   * @param string $text
+   * @param integer $width
+   * @return void
+   */
   protected function centeredText(string $text, int $width = null)
   {
     if (is_null($width))
@@ -40,6 +69,12 @@ class TextQuizzVisitor implements IQuizzVisitor
     return str_repeat(' ', $left) . $text . str_repeat(' ', $width - $left - $len);
   }
 
+  /**
+   * Gère l'affichage Text de petite question ouverte
+   *
+   * @param LittleOpenAsk $l
+   * @return void
+   */
   public function renderLittleOpenAsk(LittleOpenAsk $l)
   {
     echo $l->getLabel(), PHP_EOL,
@@ -50,6 +85,12 @@ class TextQuizzVisitor implements IQuizzVisitor
       PHP_EOL;
   }
 
+  /**
+   * Gère l'affichage Text de grande question ouverte
+   *
+   * @param BigOpenAsk $b
+   * @return void
+   */
   public function renderBigOpenAsk(BigOpenAsk $b)
   {
     echo $b->getLabel(), PHP_EOL,
@@ -64,6 +105,12 @@ class TextQuizzVisitor implements IQuizzVisitor
       PHP_EOL;
   }
 
+  /**
+   * Gère l'affichage Text de question fermé à choix multiple
+   *
+   * @param MultipleChoiceAsk $m
+   * @return void
+   */
   public function renderMultipleChoiceAsk(MultipleChoiceAsk $m)
   {
     $answers = $m->getQuizzAnswers();
@@ -74,6 +121,12 @@ class TextQuizzVisitor implements IQuizzVisitor
     echo PHP_EOL;
   }
 
+  /**
+   * Gère l'affichage Text de question fermé à choix unique
+   *
+   * @param UniqueChoiceAsk $u
+   * @return void
+   */
   public function renderUniqueChoiceAsk(UniqueChoiceAsk $u)
   {
     $answers = $u->getQuizzAnswers();
@@ -84,16 +137,34 @@ class TextQuizzVisitor implements IQuizzVisitor
     echo PHP_EOL;
   }
 
+  /**
+   * Gère l'affichage Text de réponse littéraire
+   *
+   * @param TextQuizzAnswer $t
+   * @return void
+   */
   public function renderTextQuizzAnswer(TextQuizzAnswer $t)
     {
       echo ($t->getIsUnique() ? ' ⭘ ' : ' ▢ '), $t->getRes(), PHP_EOL;
     }
 
+    /**
+     * Gère l'affichage Text de réponse en image
+     *
+     * @param PictureQuizzAnswer $p
+     * @return void
+     */
     public function renderPictureQuizzAnswer(PictureQuizzAnswer $p)
     {
       echo ($p->getIsUnique() ? ' ⭘ ' : ' ▢ '), $p->getRes(), PHP_EOL;
     }
 
+    /**
+     * Gère l'affichage Text d'un groupe horizontalement
+     *
+     * @param HorizontalGroup $h
+     * @return void
+     */
   public function renderHorizontalGroup(HorizontalGroup $h)
   {
     $width = (int)  (100 / sizeof($h->getElements()));
@@ -105,6 +176,12 @@ class TextQuizzVisitor implements IQuizzVisitor
     }
   }
 
+  /**
+   * Gère l'affichage Text d'un groupe verticalement
+   *
+   * @param VerticalGroup $v
+   * @return void
+   */
   public function renderVerticalGroup(VerticalGroup $v)
   {
     echo $this->centeredText($v->getTitle()), PHP_EOL;

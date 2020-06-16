@@ -22,6 +22,12 @@ class UniqueChoiceAsk extends ChoiceAsk
     return $this;
   }
 
+  /**
+   * Affecte l'affichage au visitor.
+   *
+   * @param IQuizzVisitor $v
+   * @return void
+   */
   public function render(IQuizzVisitor $v)
   {
     $v->renderUniqueChoiceAsk($this);
