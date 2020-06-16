@@ -6,11 +6,11 @@ require_once 'BigOpenAsk.php';
 
 abstract class OpenAsk extends QuizzElement
 {
-    //todo
+    //TODO
 
     protected $label;
 
-    public function __construct($label = '', $point=1é)
+    public function __construct($label = '', $point=1)
     {
         parent::__construct($point);
         $this->label= $label;        
