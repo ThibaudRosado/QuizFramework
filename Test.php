@@ -22,6 +22,11 @@ $answer2 = new TextQuizzAnswer("Le ciel");
 $answer3 = new TextQuizzAnswer("La foret");
 $answer4 = new TextQuizzAnswer("La couleur jaune");
 
+$answer5 = new TextQuizzAnswer("Un canari");
+$answer6 = new TextQuizzAnswer("Le ciel");
+$answer7 = new TextQuizzAnswer("La foret");
+$answer8 = new TextQuizzAnswer("La couleur jaune");
+
 $multiple->addQuizzAnswer($answer1);
 $multiple->addQuizzAnswer($answer2);
 $multiple->addQuizzAnswer($answer3);
@@ -29,10 +34,10 @@ $multiple->addQuizzAnswer($answer4);
 $quizz->addElement($multiple);
 
 $unique = new UniqueChoiceAsk("Ques ce qui est bleu?", 4);
-$unique->addQuizzAnswer($answer1);
-$unique->addQuizzAnswer($answer2);
-$unique->addQuizzAnswer($answer3);
-$unique->addQuizzAnswer($answer4);
+$unique->addQuizzAnswer($answer5);
+$unique->addQuizzAnswer($answer6);
+$unique->addQuizzAnswer($answer7);
+$unique->addQuizzAnswer($answer8);
 $quizz->addElement($unique);
 
 $tv80 = new TextQuizzVisitor();

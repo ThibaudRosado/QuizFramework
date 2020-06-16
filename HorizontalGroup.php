@@ -2,10 +2,11 @@
 
 require_once 'Group.php';
 
-class HorizontalGroup extends Group {
+class HorizontalGroup extends Group
+{
 
-    public function render(IQuizzVisitor $v){
+    public function render(IQuizzVisitor $v)
+    {
         $v->renderHorizontalGroup($this);
     }
-
 }

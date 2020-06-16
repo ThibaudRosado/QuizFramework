@@ -5,7 +5,7 @@ class PictureQuizzAnswer extends QuizzAnswer
     protected $res;
     protected $lien;
 
-    public function __construct($res = '', $lien ='')
+    public function __construct($res = '', $lien = '')
     {
         $this->res = $res;
         $this->lien = $lien;
@@ -22,12 +22,18 @@ class PictureQuizzAnswer extends QuizzAnswer
     }
 
     public function getLien()
-    {   
+    {
         return $this->lien;
     }
 
     public function setLien($lien)
     {
-        $this->lien=$lien;
+        $this->lien = $lien;
+    }
+
+
+    public function render(IQuizzVisitor $v, $pos)
+    {
+        $v->renderPictureQuizzAnswer($this, $pos);
     }
 }

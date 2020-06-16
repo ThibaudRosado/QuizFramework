@@ -33,19 +33,14 @@ abstract class ChoiceAsk extends QuizzElement
         return $this->quizzAnswers;
     }
 
-    public function setQuizzAnswers(array $quizzAnswers): ChoiceAsk
-    {
-        $this->quizzAnswers = $quizzAnswers;
-        return $this;
-    }
+    abstract public function setQuizzAnswers(array $quizzAnswers);
 
-    public function addQuizzAnswer(QuizzAnswer $a): ChoiceAsk
-    {
-        $this->quizzAnswers[] = $a;
-        return $this;
-    }
 
-    public function removeQuizzAnswer(QuizzAnswer $a): ChoiceAsk{
+    abstract public function addQuizzAnswer(QuizzAnswer $a);
+
+
+    public function removeQuizzAnswer(QuizzAnswer $a): ChoiceAsk
+    {
         $i = 0;
         foreach ($this->quizzAnswers as $quizzAnswer) {
             if ($quizzAnswer === $a) {

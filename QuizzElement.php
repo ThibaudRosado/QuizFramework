@@ -21,7 +21,8 @@ abstract class QuizzElement
   protected $point;
   protected $pos;
 
-  public function __construct($point = 1) {
+  public function __construct($point = 1)
+  {
 
     $this->point = $point;
   }
@@ -33,7 +34,7 @@ abstract class QuizzElement
 
   public function setPoint($point)
   {
-    $this->point=$point;
+    $this->point = $point;
   }
 
   public function getPos()
@@ -43,6 +44,6 @@ abstract class QuizzElement
 
   public function setPos($pos)
   {
-    $this->pos=$pos;
+    $this->pos = $pos;
   }
 }

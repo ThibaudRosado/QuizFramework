@@ -5,180 +5,133 @@ require_once 'Quizz.php';
 
 class HTMLQuizzVisitor implements IQuizzVisitor
 {
-  protected $actionUrl;
+    protected $actionUrl;
 
-  public function __construct($au = '')
-  {
-    $this->actionUrl = $au;
-  }
+    public function __construct($au = '')
+    {
+        $this->actionUrl = $au;
+    }
 
-  public function renderQuizz(Quizz $q)
-  {
-    echo sprintf('<form action="%s" method="post">', $this->actionUrl), PHP_EOL,
-      sprintf('<h1>%s</h1>', $q->getTitle()),
-      PHP_EOL;
+    public function renderQuizz(Quizz $q)
+    {
+        echo sprintf('<form action="%s" method="post">', $this->actionUrl), PHP_EOL,
+            sprintf('<h1>%s</h1>', $q->getTitle()),
+            PHP_EOL;
 
-    foreach ($q->getElements() as $k => $elt)
-      $elt->render($this);
+        foreach ($q->getElements() as $k => $elt)
+            $elt->render($this);
 
-    echo '</form>';
-  }
+        echo '</form>';
+    }
 
-  public function renderDescriptiveText(DescriptiveText $t)
-  {
-    echo '<div><p>', $t->getMessage(), '</p></div>', PHP_EOL, PHP_EOL;
-  }
+    public function renderDescriptiveText(DescriptiveText $t)
+    {
+        echo '<div><p>', $t->getMessage(), '</p></div>', PHP_EOL, PHP_EOL;
+    }
 
-  public function renderLittleOpenAsk(LittleOpenAsk $l)
-  {
-    echo '<div><label for="res',$l->getPos(),'">' . $l->getLabel() . '</label>',
-      '<input type="text" name="res',$l->getPos(),'" id=""></div>',
-      PHP_EOL,
-      PHP_EOL;
-  }
+    public function renderLittleOpenAsk(LittleOpenAsk $l)
+    {
+        echo '<div><label for="res', $l->getPos(), '">' . $l->getLabel() . '</label>',
+            '<input type="text" name="res',
+            $l->getPos(),
+            '" id=""></div>',
+            PHP_EOL,
+            PHP_EOL;
+    }
 
-  public function renderBigOpenAsk(BigOpenAsk $g)
-  {
-    echo '<div><label for="res',$g->getPos(),'">' . $g->getLabel() . '</label>',
-      '<textarea name="res',$g->getPos(),'" rows="5" cols="33"></textarea></div>',
-      PHP_EOL,
-      PHP_EOL;
-  }
+    public function renderBigOpenAsk(BigOpenAsk $g)
+    {
+        echo '<div><label for="res', $g->getPos(), '">' . $g->getLabel() . '</label>',
+            '<textarea name="res',
+            $g->getPos(),
+            '" rows="5" cols="33"></textarea></div>',
+            PHP_EOL,
+            PHP_EOL;
+    }
 
-  public function renderMultipleChoiceAsk(MultipleChoiceAsk $m)
-  {
-    //TODO Rendre le name des réponses Unique pour le traitement des réponses
-    $answers = $m->getQuizzAnswers();
-    echo '<div><p>', $m->getLabel(), ' (plusieurs choix possibles) : </p>', PHP_EOL;
-    $this->factChoiceAsk($answers, "checkbox", $m->getPos());
-    // foreach ($answers as $answer) {
-    //   if (is_a($answer, 'TextQuizzAnswer')) {
-    //     echo '<div>',
-    //       '<input type="checkbox" name="res" value="',
-    //       $answer->getRes(),
-    //       '">',
-    //       '<label for="scales">',
-    //       $answer->getRes(),
-    //       '</label>',
-    //       '</div>',
-    //       PHP_EOL;
-    //   } else {
-    //     echo '<div>',
-    //       '<input type="checkbox" name="res" value="',
-    //       $answer->getRes(),
-    //       '">',
-    //       '<label for="scales">',
-    //       '<img src="',
-    //       $answer->getLien(),
-    //       '"',
-    //       'alt="',
-    //       $answer->getRes(),
-    //       '">',
-    //       '</label>',
-    //       '</div>',
-    //       PHP_EOL;
-    //   }
-    // }
+    public function renderMultipleChoiceAsk(MultipleChoiceAsk $m)
+    {
+        //TODO Rendre le name des réponses Unique pour le traitement des réponses
+        $answers = $m->getQuizzAnswers();
+        echo '<div><p>', $m->getLabel(), ' (plusieurs choix possibles) : </p>', PHP_EOL;
 
-    echo '</div>', PHP_EOL, PHP_EOL;
-  }
+        foreach ($answers as $answer) {
+            $answer->render($this, $m->getPos());
+        }
 
-  public function renderUniqueChoiceAsk(UniqueChoiceAsk $u)
-  {
-    //TODO Rendre le name des réponses Unique pour le traitement des réponses
-    $answers = $u->getQuizzAnswers();
+        echo '</div>', PHP_EOL, PHP_EOL;
+    }
 
-    echo '<div><p>', $u->getLabel(), ' (1 seul choix possible) : </p>', PHP_EOL;
-    $this->factChoiceAsk($answers, $type = "radio", $u->getPos());
-    // foreach ($answers as $answer) {
-    //   if (is_a($answer, 'TextQuizzAnswer')) {
+    public function renderUniqueChoiceAsk(UniqueChoiceAsk $u)
+    {
+        //TODO Rendre le name des réponses Unique pour le traitement des réponses
+        $answers = $u->getQuizzAnswers();
 
-    //     echo '<div>',
-    //       '<input type="radio" name="res" value="',
-    //       $answer->getRes(),
-    //       '">',
-    //       '<label for="scales">',
-    //       $answer->getRes(),
-    //       '</label>',
-    //       '</div>',
-    //       PHP_EOL;
-    //   } else {
-    //     echo '<div>',
-    //       '<input type="radio" name="res" value="',
-    //       $answer->getRes(),
-    //       '">',
-    //       '<label for="scales">',
-    //       '<img src="',
-    //       $answer->getLien(),
-    //       '"',
-    //       'alt="',
-    //       $answer->getRes(),
-    //       '">',
-    //       '</label>',
-    //       '</div>',
-    //       PHP_EOL;
-    //   }
-    // }
-    echo '</div>', PHP_EOL, PHP_EOL;
-  }
+        echo '<div><p>', $u->getLabel(), ' (1 seul choix possible) : </p>', PHP_EOL;
 
-  private function factChoiceAsk($answers, $type, $pos)
-  {
+        foreach ($answers as $answer) {
+            $answer->render($this, $u->getPos());
+        }
 
-    foreach ($answers as $answer) {
-      if (is_a($answer, 'TextQuizzAnswer')) {
+        echo '</div>', PHP_EOL, PHP_EOL;
+    }
 
+
+    public function renderTextQuizzAnswer(TextQuizzAnswer $t, $pos)
+    {
+        echo '<div> <input type="', ($t->getIsUnique() ? 'radio' : 'checkbox'), '" name="res', $pos, '" value="', $t->getRes(), '">',
+            '<label for="res',
+            $pos,
+            '">',
+            $t->getRes(),
+            '</label>',
+            '</div>',
+            PHP_EOL;
+    }
+
+    public function renderPictureQuizzAnswer(PictureQuizzAnswer $p, $pos)
+    {
         echo '<div>',
-          '<input type="',
-          $type,
-          '" name="res',$pos,'" value="',
-          $answer->getRes(),
-          '">',
-          '<label for="res',$pos,'">',
-          $answer->getRes(),
-          '</label>',
-          '</div>',
-          PHP_EOL;
-      } else {
-        echo '<div>',
-          '<input type="',
-          $type,
-          '" name="res',$pos,'" value="',
-          $answer->getRes(),
-          '">',
-          '<label for="res',$pos,'">',
-          '<img src="',
-          $answer->getLien(),
-          '"',
-          'alt="',
-          $answer->getRes(),
-          '">',
-          '</label>',
-          '</div>',
-          PHP_EOL;
-      }
+            '<input type="',
+            ($p->getIsUnique() ? 'radio' : 'checkbox'),
+            '" name="res',
+            $pos,
+            '" value="',
+            $p->getRes(),
+            '">',
+            '<label for="res',
+            $pos,
+            '">',
+            '<img src="',
+            $p->getLien(),
+            '"',
+            'alt="',
+            $p->getRes(),
+            '">',
+            '</label>',
+            '</div>',
+            PHP_EOL;
     }
-  }
 
-  public function renderHorizontalGroup(HorizontalGroup $h)
-  {
-    $width = (int)  (100 / sizeof($h->getElements()));
-    echo sprintf('<h1>%s</h1>', $h->getTitle()), PHP_EOL;
-    echo '<div style="display: flex; flex-direction: row;justify-content: space-around;">', PHP_EOL;
+    public function renderHorizontalGroup(HorizontalGroup $h)
+    {
+        $width = (int)  (100 / sizeof($h->getElements()));
+        echo sprintf('<h1>%s</h1>', $h->getTitle()), PHP_EOL;
+        echo '<div style="display: flex; flex-direction: row;justify-content: space-around;">', PHP_EOL;
 
-    foreach ($h->getElements() as $element) {
-      echo '<div width="', $width, '%">', PHP_EOL;
-      $element->render($this);
-      echo '</div>', PHP_EOL;
+        foreach ($h->getElements() as $element) {
+            echo '<div width="', $width, '%">', PHP_EOL;
+            $element->render($this);
+            echo '</div>', PHP_EOL;
+        }
+        echo '</div>', PHP_EOL, PHP_EOL;
     }
-    echo '</div>', PHP_EOL, PHP_EOL;
-  }
 
-  public function renderVerticalGroup(VerticalGroup $v)
-  {
-    echo sprintf('<h1>%s</h1>', $v->getTitle()), PHP_EOL;
-    foreach ($v->getElements() as $element) {
-      $element->render($this);
+    public function renderVerticalGroup(VerticalGroup $v)
+    {
+        echo sprintf('<h1>%s</h1>', $v->getTitle()), PHP_EOL;
+        foreach ($v->getElements() as $element) {
+            $element->render($this);
+        }
     }
-  }
 }
