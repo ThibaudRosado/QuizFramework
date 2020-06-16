@@ -48,12 +48,12 @@ $html = new HTMLQuizzVisitor('result.php');
 
 
 $multipleImage = new MultipleChoiceAsk('Où est l\'orange du marchand');
-$repImage = new PictureQuizzAnswer('Orange','orange.jpg');
+$repImage = new PictureQuizzAnswer('Orange','img/orange.jpg');
 $multipleImage->addQuizzAnswer($repImage);
 
 
 $uniqueImage = new UniqueChoiceAsk('Où est l\'orange du marchand');
-$repImage = new PictureQuizzAnswer('Orange','orange.jpg');
+$repImage = new PictureQuizzAnswer('Orange','img/orange.jpg');
 $uniqueImage->addQuizzAnswer($repImage);
 
 
