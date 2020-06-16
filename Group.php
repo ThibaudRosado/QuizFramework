@@ -4,7 +4,18 @@ require_once 'Quizz.php';
 
 abstract class Group extends QuizzElement
 {
+    /**
+     * Titre du groupe
+     *
+     * @var string
+     */
     protected $title;
+
+    /**
+     * Array contenant des objet QuizzElement
+     *
+     * @var array
+     */
     protected $elements;
 
     public function __construct(string $title = '', array $elements = array())
@@ -18,7 +29,10 @@ abstract class Group extends QuizzElement
     {
         $i = 0;
         foreach ($elements as $element) {
-            $element->setPos( $this->getPos().'.'.$i);
+            $element->setPos($this->getPos() . '.' . $i);
+            if (is_a($element, 'Group')) {
+                $element->atribuerPos($element->getElements());
+            }
             $i++;
         }
     }

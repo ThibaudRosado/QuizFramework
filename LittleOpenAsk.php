@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 class LittleOpenAsk extends OpenAsk
 {
-    public function render(IQuizzVisitor $v){
+    /**
+     * Affecte l'affichage au visitor.
+     *
+     * @param IQuizzVisitor $v
+     * @return void
+     */
+    public function render(IQuizzVisitor $v)
+    {
         $v->renderLittleOpenAsk($this);
     }
-
 }

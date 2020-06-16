@@ -7,50 +7,93 @@ require_once 'MultipleChoiceAsk.php';
 abstract class ChoiceAsk extends QuizzElement
 {
     //TODO
-
+    /**
+     * Text contenant la question
+     *
+     * @var string
+     */
     protected $label;
+
+    /**
+     * Array contenant les objets réponses
+     *
+     * @var Array
+     */
     protected $quizzAnswers;
 
-    public function __construct($label = '', $point = 1,array $quizzAnswers = array()) {
+    /**
+     * Construit le ChoiceAsk
+     *
+     * @param string $label
+     * @param integer $point
+     * @param array $quizzAnswers
+     */
+    public function __construct($label = '', $point = 1, array $quizzAnswers = array())
+    {
         parent::__construct($point);
         $this->label = $label;
         $this->quizzAnswers = $quizzAnswers;
     }
 
-    public function getLabel()    {
+    /**
+     * @return void
+     */
+    public function getLabel()
+    {
         return $this->label;
     }
 
-    public function setLabel($label)    {
+    /**
+     * @param string $label
+     * @return void
+     */
+    public function setLabel($label)
+    {
         $this->label = $label;
     }
 
-    public function getQuizzAnswers(): array    {
+    /**
+     * @return array
+     */
+    public function getQuizzAnswers(): array
+    {
         return $this->quizzAnswers;
     }
 
-    public function setQuizzAnswers(array $quizzAnswers): ChoiceAsk    {
-        $this->quizzAnswers = $quizzAnswers;
-        return $this;
-    }
+    /**
+     * @param array $quizzAnswers
+     * @return void
+     */
+    abstract public function setQuizzAnswers(array $quizzAnswers);
 
-    public function addQuizzAnswer(QuizzAnswer $a): ChoiceAsk    {
-        $this->quizzAnswers[] = $a;
-        return $this;
-    }
+    /**
+     * @param QuizzAnswer $a
+     * @return void
+     */
+    abstract public function addQuizzAnswer(QuizzAnswer $a);
 
-    public function removeQuizzAnswer(QuizzAnswer $a): ChoiceAsk    {
-        $i=0;
-    foreach ($this->quizzAnswers as $quizzAnswer) {
-        if ( $quizzAnswer === $a){
-        array_splice($this->quizzAnswers,$i,1);
+    /**
+     * @param QuizzAnswer $a
+     * @return ChoiceAsk
+     */
+    public function removeQuizzAnswer(QuizzAnswer $a): ChoiceAsk
+    {
+        $i = 0;
+        foreach ($this->quizzAnswers as $quizzAnswer) {
+            if ($quizzAnswer === $a) {
+                array_splice($this->quizzAnswers, $i, 1);
+            }
+            $i++;
         }
-        $i ++;
-    }
         return $this;
     }
 
-    public function removeQuizzAnswerAt(int $i): ChoiceAsk    {
+    /**
+     * @param integer $i
+     * @return ChoiceAsk
+     */
+    public function removeQuizzAnswerAt(int $i): ChoiceAsk
+    {
         unset($this->quizzAnswers[$i]);
         $this->quizzAnswers = array_values($this->quizzAnswers);
         return $this;
